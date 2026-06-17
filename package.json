@@ -13,14 +13,19 @@
     "simulate": "node scripts/mock-webhook.js"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@stellar/freighter-api": "^6.0.1",
     "@stellar/stellar-sdk": "^11.3.0",
     "clsx": "^2.1.1",
     "express": "^4.18.2",
+    "i18next": "^25.2.1",
     "lucide-react": "^0.395.0",
     "next": "14.2.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-i18next": "^15.5.3",
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {

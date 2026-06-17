@@ -2,25 +2,27 @@
 
 import { createContext, useContext, useState, type ReactNode } from 'react';
 import { CheckCircle2, XCircle, AlertCircle, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 type ToastType = 'success' | 'error' | 'warning' | 'info';
 
 interface Toast {
   id: string;
-  message: string;
+  message: ReactNode;
   type: ToastType;
 }
 
 interface ToastContextType {
-  showToast: (message: string, type: ToastType) => void;
+  showToast: (message: ReactNode, type: ToastType) => void;
 }
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
 export function ToastProvider({ children }: { children: ReactNode }) {
+  const { t } = useTranslation();
   const [toasts, setToasts] = useState<Toast[]>([]);
 
-  function showToast(message: string, type: ToastType = 'info') {
+  function showToast(message: ReactNode, type: ToastType = 'info') {
     const id = Math.random().toString(36).substring(2, 9);
     setToasts((prev) => [...prev, { id, message, type }]);
     setTimeout(() => {
@@ -71,7 +73,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
             <p className="flex-1 text-sm font-medium">{toast.message}</p>
             <button
               onClick={() => removeToast(toast.id)}
-              aria-label="Close notification"
+              aria-label={t('toast.closeNotification')}
               className="opacity-70 hover:opacity-100 transition-opacity focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded p-0.5"
             >
               <X className="w-4 h-4" aria-hidden="true" />
